@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Quiz</string>
+    <string name="correctAnsText">Correct: 0</string>
+    <string name="wrongAnsText">Wrong: 0</string>
+    <string name="section1">Chemistry</string>
+    <string name="section2">Physics</string>
+    <string name="section3">Biology</string>
+    <string name="section4">History</string>
+    <string name="option1">option1</string>
+    <string name="option2">option2</string>
+    <string name="option3">option3</string>
+    <string name="option4">option4</string>
+    <string name="question">Question Resource</string>
+    <string name="scoreText">Score</string>
+    <string name="sectionName">sectionName</string>
+    <string name="congratandtry">Congrats!</string>
+    <string name="taskResulttext">Quiz Completed Successfully.</string>
+    <string name="scoreWord">xxxxxxxxxxxxxxxxx</string>
+</resources>
