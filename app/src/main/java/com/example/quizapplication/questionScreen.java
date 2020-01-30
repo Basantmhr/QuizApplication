@@ -1,6 +1,7 @@
 package com.example.quizapplication;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -12,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 
 public class questionScreen extends AppCompatActivity implements View.OnClickListener {
-    private TextView questionText, correctAns, wrongAns ,sectionName;
+    private TextView questionText, correctAns, wrongAns ,sectionName, counterText;
     private Button option1, option2, option3, option4;
     private String ansString;
     private int correctSum = 0, wrongSum = 0, globalIndex = 0;
@@ -33,6 +34,8 @@ public class questionScreen extends AppCompatActivity implements View.OnClickLis
         option2 = findViewById(R.id.optionTwo);
         option3 = findViewById(R.id.optionThree);
         option4 = findViewById(R.id.optionFour);
+        counterText=findViewById(R.id.counterReal);
+
         option1.setOnClickListener(this);
         option2.setOnClickListener(this);
         option3.setOnClickListener(this);
@@ -265,7 +268,40 @@ public class questionScreen extends AppCompatActivity implements View.OnClickLis
             option2.setText(ql.get(globalIndex).getOption2());
             option3.setText(ql.get(globalIndex).getOption3());
             option4.setText(ql.get(globalIndex).getOption4());
+            counter();
             globalIndex++;
         }
+    }
+    void counter()
+    {
+        new CountDownTimer(30000,1000)
+        { int count=30;
+            @Override
+            public void onTick(long l) {
+                counterText.setText(String.valueOf(count));
+                count--;
+            }
+
+            @Override
+            public void onFinish() {
+                wrongSum=wrongSum+1;
+                wrongAns.setText("Wrong: " + wrongSum);
+                if ((getIntent().getStringExtra("SectionName")).equals("Chemistry")) {
+
+                    changeQuestion(questionArrayChemistry);
+                }
+                if ((getIntent().getStringExtra("SectionName")).equals("Physics")) {
+
+                    changeQuestion(questionArrayPhysics);
+                }
+                if ((getIntent().getStringExtra("SectionName")).equals("History")) {
+                    changeQuestion(questionArrayHistory);
+                }
+                if ((getIntent().getStringExtra("SectionName")).equals("Biology")) {
+                    changeQuestion(questionArrayBiology);
+                }
+            }
+
+        }.start();
     }
 }

@@ -23,6 +23,28 @@
         android:layout_marginTop="80dp"
         android:background="@color/colorPrimaryDark"
         app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/counterTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/viewid"
+        app:layout_constraintRight_toLeftOf="@id/counterReal"
+        android:text="@string/timeRemaning"
+        android:layout_marginRight="1dp"
+        android:textStyle="bold"
+        />
+    <TextView
+        android:id="@+id/counterReal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/viewid"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginRight="10dp"
+        android:text="@string/counterReal"
+        android:textColor="@android:color/holo_red_dark"
+        android:textStyle="bold"
+        />
+
 
     <TextView
         android:id="@+id/questionView"
