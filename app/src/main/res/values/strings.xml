@@ -16,4 +16,6 @@
     <string name="congratandtry">Congrats!</string>
     <string name="taskResulttext">Quiz Completed Successfully.</string>
     <string name="scoreWord">xxxxxxxxxxxxxxxxx</string>
+    <string name="timeRemaning">Time Remaning:</string>
+    <string name="counterReal">xxx</string>
 </resources>

@@ -2,6 +2,7 @@ package com.example.quizapplication;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +17,7 @@ public class questionScreen extends AppCompatActivity implements View.OnClickLis
     private TextView questionText, correctAns, wrongAns ,sectionName, counterText;
     private Button option1, option2, option3, option4;
     private String ansString;
+    private CountDownTimer var;
     private int correctSum = 0, wrongSum = 0, globalIndex = 0;
     ArrayList<questionClass> questionArrayChemistry = new ArrayList<>();
     ArrayList<questionClass> questionArrayPhysics = new ArrayList<>();
@@ -71,7 +73,77 @@ public class questionScreen extends AppCompatActivity implements View.OnClickLis
 
         //Changing Section Name
         sectionName.setText(getIntent().getStringExtra("SectionName"));
+        gettingIntent();
 
+    }
+
+    @Override
+    public void onClick(View view) {
+        var.cancel();
+        switch (view.getId()) {
+
+            case R.id.optionOne:
+                if (option1.getText().toString().equals(ansString)) {
+                    correctSum = correctSum + 1;
+                    correctAns.setText("Correct: " + correctSum);
+                    option1.setBackground(getDrawable(R.drawable.drawabletruebutton));
+                    sleeping();
+
+                } else {
+                    wrongSum = wrongSum + 1;
+                    wrongAns.setText("Wrong: " + wrongSum);
+                    option1.setBackground(getDrawable(R.drawable.drawablefalsebutton));
+                    sleeping();
+                }
+                break;
+            case R.id.optionTwo:
+                if (option2.getText().toString().equals(ansString)) {
+                    correctSum = correctSum + 1;
+                    correctAns.setText("Correct: " + correctSum);
+                    option2.setBackground(getDrawable(R.drawable.drawabletruebutton));
+                    sleeping();
+
+                } else {
+                    wrongSum = wrongSum + 1;
+                    wrongAns.setText("Wrong: " + wrongSum);
+                    option2.setBackground(getDrawable(R.drawable.drawablefalsebutton));
+                    sleeping();
+
+                }
+                break;
+            case R.id.optionThree:
+                if (option3.getText().toString().equals(ansString)) {
+                    correctSum = correctSum + 1;
+                    correctAns.setText("Correct: " + correctSum);
+                    option3.setBackground(getDrawable(R.drawable.drawabletruebutton));
+                    sleeping();
+
+                } else {
+                    wrongSum = wrongSum + 1;
+                    wrongAns.setText("Wrong: " + wrongSum);
+                    option3.setBackground(getDrawable(R.drawable.drawablefalsebutton));
+                    sleeping();
+                }
+                break;
+            case R.id.optionFour:
+                if (option4.getText().toString().equals(ansString)) {
+                    correctSum = correctSum + 1;
+                    correctAns.setText("Correct: " + correctSum);
+                    option4.setBackground(getDrawable(R.drawable.drawabletruebutton));
+                    sleeping();
+                } else {
+                    wrongSum = wrongSum + 1;
+                    wrongAns.setText("Wrong: " + wrongSum);
+                    option4.setBackground(getDrawable(R.drawable.drawablefalsebutton));
+                    sleeping();
+                }
+                break;
+
+
+        }
+    }
+    void gettingIntent()
+    {
         if ((getIntent().getStringExtra("SectionName")).equals("Chemistry")) {
 
             changeQuestion(questionArrayChemistry);
@@ -86,173 +158,13 @@ public class questionScreen extends AppCompatActivity implements View.OnClickLis
         if ((getIntent().getStringExtra("SectionName")).equals("Biology")) {
             changeQuestion(questionArrayBiology);
         }
-
-    }
-
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-
-            case R.id.optionOne:
-                if (option1.getText().toString().equals(ansString)) {
-                    Toast.makeText(getApplicationContext(), " " + ansString, Toast.LENGTH_SHORT).show();
-                    correctSum = correctSum + 1;
-                    correctAns.setText("Correct: " + correctSum);
-                    if ((getIntent().getStringExtra("SectionName")).equals("Chemistry")) {
-
-                        changeQuestion(questionArrayChemistry);
-                    }
-                    if ((getIntent().getStringExtra("SectionName")).equals("Physics")) {
-
-                        changeQuestion(questionArrayPhysics);
-                    }
-                    if ((getIntent().getStringExtra("SectionName")).equals("History")) {
-                        changeQuestion(questionArrayHistory);
-                    }
-                    if ((getIntent().getStringExtra("SectionName")).equals("Biology")) {
-                        changeQuestion(questionArrayBiology);
-                    }
-
-                } else {
-                    wrongSum = wrongSum + 1;
-//                    option1.setBackgroundColor(Color.parseColor("#FF0000"));
-                    wrongAns.setText("Wrong: " + wrongSum);
-                    if ((getIntent().getStringExtra("SectionName")).equals("Chemistry")) {
-
-                        changeQuestion(questionArrayChemistry);
-                    }
-                    if ((getIntent().getStringExtra("SectionName")).equals("Physics")) {
-
-                        changeQuestion(questionArrayPhysics);
-                    }
-                    if ((getIntent().getStringExtra("SectionName")).equals("History")) {
-                        changeQuestion(questionArrayHistory);
-                    }
-                    if ((getIntent().getStringExtra("SectionName")).equals("Biology")) {
-                        changeQuestion(questionArrayBiology);
-                    }
-                }
-                break;
-            case R.id.optionTwo:
-                if (option2.getText().toString().equals(ansString)) {
-                    correctSum = correctSum + 1;
-                    correctAns.setText("Correct: " + correctSum);
-                    if ((getIntent().getStringExtra("SectionName")).equals("Chemistry")) {
-
-                        changeQuestion(questionArrayChemistry);
-                    }
-                    if ((getIntent().getStringExtra("SectionName")).equals("Physics")) {
-
-                        changeQuestion(questionArrayPhysics);
-                    }
-                    if ((getIntent().getStringExtra("SectionName")).equals("History")) {
-                        changeQuestion(questionArrayHistory);
-                    }
-                    if ((getIntent().getStringExtra("SectionName")).equals("Biology")) {
-                        changeQuestion(questionArrayBiology);
-                    }
-
-                } else {
-                    wrongSum = wrongSum + 1;
-                    wrongAns.setText("Wrong: " + wrongSum);
-                    if ((getIntent().getStringExtra("SectionName")).equals("Chemistry")) {
-
-                        changeQuestion(questionArrayChemistry);
-                    }
-                    if ((getIntent().getStringExtra("SectionName")).equals("Physics")) {
-
-                        changeQuestion(questionArrayPhysics);
-                    }
-                    if ((getIntent().getStringExtra("SectionName")).equals("History")) {
-                        changeQuestion(questionArrayHistory);
-                    }
-                    if ((getIntent().getStringExtra("SectionName")).equals("Biology")) {
-                        changeQuestion(questionArrayBiology);
-                    }
-                }
-                break;
-            case R.id.optionThree:
-                if (option3.getText().toString().equals(ansString)) {
-                    correctSum = correctSum + 1;
-                    correctAns.setText("Correct: " + correctSum);
-                    if ((getIntent().getStringExtra("SectionName")).equals("Chemistry")) {
-
-                        changeQuestion(questionArrayChemistry);
-                    }
-                    if ((getIntent().getStringExtra("SectionName")).equals("Physics")) {
-
-                        changeQuestion(questionArrayPhysics);
-                    }
-                    if ((getIntent().getStringExtra("SectionName")).equals("History")) {
-                        changeQuestion(questionArrayHistory);
-                    }
-                    if ((getIntent().getStringExtra("SectionName")).equals("Biology")) {
-                        changeQuestion(questionArrayBiology);
-                    }
-
-                } else {
-                    wrongSum = wrongSum + 1;
-                    wrongAns.setText("Wrong: " + wrongSum);
-                    if ((getIntent().getStringExtra("SectionName")).equals("Chemistry")) {
-
-                        changeQuestion(questionArrayChemistry);
-                    }
-                    if ((getIntent().getStringExtra("SectionName")).equals("Physics")) {
-
-                        changeQuestion(questionArrayPhysics);
-                    }
-                    if ((getIntent().getStringExtra("SectionName")).equals("History")) {
-                        changeQuestion(questionArrayHistory);
-                    }
-                    if ((getIntent().getStringExtra("SectionName")).equals("Biology")) {
-                        changeQuestion(questionArrayBiology);
-                    }
-                }
-                break;
-            case R.id.optionFour:
-                if (option4.getText().toString().equals(ansString)) {
-                    correctSum = correctSum + 1;
-                    correctAns.setText("Correct: " + correctSum);
-                    if ((getIntent().getStringExtra("SectionName")).equals("Chemistry")) {
-
-                        changeQuestion(questionArrayChemistry);
-                    }
-                    if ((getIntent().getStringExtra("SectionName")).equals("Physics")) {
-
-                        changeQuestion(questionArrayPhysics);
-                    }
-                    if ((getIntent().getStringExtra("SectionName")).equals("History")) {
-                        changeQuestion(questionArrayHistory);
-                    }
-                    if ((getIntent().getStringExtra("SectionName")).equals("Biology")) {
-                        changeQuestion(questionArrayBiology);
-                    }
-
-                } else {
-                    wrongSum = wrongSum + 1;
-                    wrongAns.setText("Wrong: " + wrongSum);
-                    if ((getIntent().getStringExtra("SectionName")).equals("Chemistry")) {
-
-                        changeQuestion(questionArrayChemistry);
-                    }
-                    if ((getIntent().getStringExtra("SectionName")).equals("Physics")) {
-
-                        changeQuestion(questionArrayPhysics);
-                    }
-                    if ((getIntent().getStringExtra("SectionName")).equals("History")) {
-                        changeQuestion(questionArrayHistory);
-                    }
-                    if ((getIntent().getStringExtra("SectionName")).equals("Biology")) {
-                        changeQuestion(questionArrayBiology);
-                    }
-                }
-                break;
-
-
-        }
     }
 
     void changeQuestion(ArrayList<questionClass> ql) {
+        option1.setBackground(getDrawable(R.drawable.curvedbutton));
+        option2.setBackground(getDrawable(R.drawable.curvedbutton));
+        option3.setBackground(getDrawable(R.drawable.curvedbutton));
+        option4.setBackground(getDrawable(R.drawable.curvedbutton));
         if (globalIndex == ql.size()) {
             Intent completedQuiz = new Intent(questionScreen.this, completionScreen.class);
             Log.e("Score::", correctSum + "");
@@ -262,6 +174,7 @@ public class questionScreen extends AppCompatActivity implements View.OnClickLis
             finish();
 
         } else {
+
             ansString = ql.get(globalIndex).getAns();
             questionText.setText(ql.get(globalIndex).getQuestion());
             option1.setText(ql.get(globalIndex).getOption1());
@@ -274,8 +187,9 @@ public class questionScreen extends AppCompatActivity implements View.OnClickLis
     }
     void counter()
     {
-        new CountDownTimer(30000,1000)
+        var= new CountDownTimer(30000,1000)
         { int count=30;
+
             @Override
             public void onTick(long l) {
                 counterText.setText(String.valueOf(count));
@@ -286,22 +200,20 @@ public class questionScreen extends AppCompatActivity implements View.OnClickLis
             public void onFinish() {
                 wrongSum=wrongSum+1;
                 wrongAns.setText("Wrong: " + wrongSum);
-                if ((getIntent().getStringExtra("SectionName")).equals("Chemistry")) {
-
-                    changeQuestion(questionArrayChemistry);
-                }
-                if ((getIntent().getStringExtra("SectionName")).equals("Physics")) {
-
-                    changeQuestion(questionArrayPhysics);
-                }
-                if ((getIntent().getStringExtra("SectionName")).equals("History")) {
-                    changeQuestion(questionArrayHistory);
-                }
-                if ((getIntent().getStringExtra("SectionName")).equals("Biology")) {
-                    changeQuestion(questionArrayBiology);
-                }
+               gettingIntent();
             }
 
         }.start();
+    }
+    void sleeping()
+    {
+
+        Handler hm = new Handler();
+        hm.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                gettingIntent();
+            }
+        },500);
     }
 }
