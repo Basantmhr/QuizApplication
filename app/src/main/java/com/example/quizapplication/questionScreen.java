@@ -37,7 +37,6 @@ public class questionScreen extends AppCompatActivity implements View.OnClickLis
         option3 = findViewById(R.id.optionThree);
         option4 = findViewById(R.id.optionFour);
         counterText=findViewById(R.id.counterReal);
-
         option1.setOnClickListener(this);
         option2.setOnClickListener(this);
         option3.setOnClickListener(this);
@@ -80,6 +79,7 @@ public class questionScreen extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View view) {
         var.cancel();
+        disableClickFun(view);
         switch (view.getId()) {
 
             case R.id.optionOne:
@@ -161,6 +161,7 @@ public class questionScreen extends AppCompatActivity implements View.OnClickLis
     }
 
     void changeQuestion(ArrayList<questionClass> ql) {
+        enableClickFun();
         option1.setBackground(getDrawable(R.drawable.curvedbutton));
         option2.setBackground(getDrawable(R.drawable.curvedbutton));
         option3.setBackground(getDrawable(R.drawable.curvedbutton));
@@ -215,5 +216,38 @@ public class questionScreen extends AppCompatActivity implements View.OnClickLis
                 gettingIntent();
             }
         },500);
+    }
+
+    void disableClickFun(View v)
+    {
+        switch(v.getId())
+        {
+            case R.id.optionOne :
+                option2.setClickable(false);
+                option3.setClickable(false);
+                option4.setClickable(false);
+                break;
+            case R.id.optionTwo :
+                option1.setClickable(false);
+                option3.setClickable(false);
+                option4.setClickable(false);
+                break;
+            case R.id.optionThree :
+                option1.setClickable(false);
+                option2.setClickable(false);
+                option4.setClickable(false);
+                break;
+            case R.id.optionFour :
+                option1.setClickable(false);
+                option2.setClickable(false);
+                option3.setClickable(false);
+        }
+    }
+    void enableClickFun()
+    {
+        option1.setClickable(true);
+        option2.setClickable(true);
+        option3.setClickable(true);
+        option4.setClickable(true);
     }
 }
