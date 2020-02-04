@@ -250,4 +250,20 @@ public class questionScreen extends AppCompatActivity implements View.OnClickLis
         option3.setClickable(true);
         option4.setClickable(true);
     }
+
+    @Override
+    public void onBackPressed() {
+        var.cancel();
+        Intent backpress= new Intent(getApplicationContext(),MainActivity.class);
+        backpress.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+        backpress.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        backpress.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+       // backpress.putExtra("EXIT","true");
+        Toast.makeText(getApplicationContext(),"BackPressed",Toast.LENGTH_LONG).show();
+       // Log.d("Back..", "onBackPressed:pressed ");
+        startActivity(backpress);
+        //super.onBackPressed();
+        finish();
+
+    }
 }
